@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Badge from '../components/Badge.astro'
+import SocialPill from '../components/SocialPill.astro'
+import LinkedIn from '../icons/LinkedIn.astro'
+import GitHub from '../icons/GitHub.astro'
+import Mail from '../icons/Mail.astro'
+---
+
+<Layout title='My portfolio' description='A portfolio to showcase my projects and skills.'>
+	<main>
+    <section class="section1">
+      <img src="logo.jfif" alt="dev photo" />
+      <h1>
+        Hey, soy Diego
+        <a
+          href="https://www.linkedin.com/in/diego-f-chaverra-c-683677271/"
+          target="_blank"
+          rel="noopener"
+        >
+          <Badge>Disponible para trabajar</Badge></a
+        >
+      </h1>
+      <h2>
+        <span style="opacity: .6;">Sin experiencia laboral.</span>
+        <span style="color: rgb(154, 132, 206);"
+          >Estudiante para desarrollador Fullstack.</span
+        >
+        <span style="opacity: 0.8;">De Cali Colombia.</span>
+        <span style="color: rgb(139, 139, 107);"
+          >Especializado en crear soluciones únicas a la medida del
+          cliente.</span
+        >
+      </h2>
+
+      <nav>
+        <SocialPill
+          href="https://www.linkedin.com/in/diego-f-chaverra-c-683677271/"
+        >
+          <LinkedIn />
+          LinkedIn
+        </SocialPill>
+				<SocialPill href="/">
+					<GitHub />
+					GitHub
+				</SocialPill>
+				<SocialPill href="/">
+					<Mail />
+					diegofech15@gmail.com
+				</SocialPill>
+      </nav>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  h1 {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+
+  h2 {
+    padding-top: 10px;
+    font-size: 1.3em;
+    font-weight: normal;
+    opacity: 0.8;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    padding-left: 10px;
+  }
+
+  .section1 {
+    width: 740px;
+    padding-top: 200px;
+  }
+
+  img {
+    padding-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+	nav {
+		display: flex;
+		gap: 10px;
+	}
+</style>

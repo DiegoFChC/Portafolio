@@ -1,0 +1,25 @@
+<a href={Astro.props.href} target="_blank" rel="noopener noreferrer">
+  <slot />
+</a>
+
+
+<style>
+  a {
+    padding: 8px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.419);
+    border-radius: 20px;
+    color: white;
+    background: rgba(128, 128, 128, 0.121);
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: rgba(128, 128, 128, 0.219);
+    }
+  }
+</style>
