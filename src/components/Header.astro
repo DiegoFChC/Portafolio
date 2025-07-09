@@ -1,35 +1,136 @@
-<header>
+<header id='web-header'>
   <nav>
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/projects">Projects</a>
     <a href="/contacts">Contacts</a>
   </nav>
+
+  <div
+    id='menu-backdrop'
+  ></div>
 </header>
+
+<script>
+  const listItem = document.querySelectorAll('#web-header a')
+  const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
+
+  listItem.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const { left, top, width, height } = item.getBoundingClientRect()
+
+      menuBackDrop.style.setProperty('--left', `${left}px`)
+      menuBackDrop.style.setProperty('--top', `${top - 7}px`)
+      menuBackDrop.style.setProperty('--width', `${width}px`)
+      menuBackDrop.style.setProperty('--height', `${height}px`)
+      
+      menuBackDrop.style.opacity = '1'
+      menuBackDrop.style.visibility = 'visible'
+    })
+
+    item.addEventListener('mouseleave', () => {
+      menuBackDrop.style.opacity = '0'
+      menuBackDrop.style.visibility = 'hidden'
+    })
+  })
+</script>
 
 <style>
   header {
     width: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    position: fixed;
+    top: 0;
+    margin: 0.5rem auto auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
   }
   
   nav {
-    padding: 20px;
     display: flex;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    color: #4b5563;
     justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+  }
 
-    a {
-      text-decoration: none;
-      color: white;
-      opacity: .8;
+  @media (prefers-color-scheme: dark) {
+    nav {
+      color: #e5e7eb; /* dark:text-gray-200 */
     }
   }
+
+  nav a {
+    padding: 5px 15px;
+    text-decoration: none;
+    color: white;
+    opacity: .8;
+    font-size: 0.8rem;
+  }
+
+  #menu-backdrop {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border-radius: 0.25rem;
+    transform: translate(var(--left), var(--top));
+    left: 0;
+    top: 0;
+    width: var(--width);
+    height: var(--height);
+    transition: all 500ms ease-in-out;
+    opacity: 0;
+    z-index: -10;
+  }
+
+  nav {
+  /* Animación vinculada al desplazamiento */
+  animation: nav-shadown 1s linear both;
+  animation-timeline: scroll();
+  animation-range: 0 100px;
+
+  /* Estilos base del fondo (equivalente a @apply dark:bg-gray-800/90 bg-white/50;) */
+  background-color: rgb(3, 0, 10) 70%; /* bg-white/50 */
+}
+
+/* Media query para modo oscuro (dark:bg-gray-800/90) */
+@media (prefers-color-scheme: dark) {
+  nav {
+    background-color: rgba(128, 0, 128, 0.267) 5%; /* dark:bg-gray-800/90 */
+  }
+}
+
+
+/* Definición de la animación */
+@keyframes nav-shadown {
+  0% {
+    /* Fondo inicial transparente (equivalente a @apply dark:bg-gray-800/0 bg-white/0;) */
+    background-color: rgba(255, 255, 255, 0); /* bg-white/0 */
+  }
+  
+  /* Media query para el 0% en modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    0% {
+      background-color: rgba(31, 41, 55, 0); /* dark:bg-gray-800/0 */
+    }
+  }
+
+  to {
+    /* Estilos finales (equivalente a @apply shadow-lg ring-1 backdrop-blur ring-white/10;) */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+    
+    /* ring-1 y ring-white/10 combinados para un borde interior */
+    outline: 1px solid rgba(255, 255, 255, 0.1); /* ring-1 y ring-white/10 usando outline para el efecto de "ring" */
+    outline-offset: -1px; /* Para asegurar que el outline sea interior si es necesario */
+    
+    backdrop-filter: blur(8px); /* backdrop-blur (Tailwind usa un valor predeterminado, 8px es común) */
+  }
+}
 </style>
 					
