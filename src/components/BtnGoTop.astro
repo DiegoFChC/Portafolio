@@ -1,0 +1,44 @@
+---
+import ArrowTop from '../icons/ArrowTop.astro'
+---
+
+<button class='go-top'>
+  <ArrowTop />
+</button>
+
+<script>
+  const btnGoTop = document.querySelector('.go-top')
+
+  btnGoTop?.addEventListener('click', () => {
+    document.documentElement.scrollTop = 0
+  })
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < 400) {
+      btnGoTop.style.right = -100 + 'px'
+    } else {
+      btnGoTop.style.right = 20 + 'px'
+    }
+  })
+</script>
+
+<style>
+  .go-top {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgba(18, 1, 58, 0.349);
+    border: 1px solid rgba(47, 32, 184, 0.76);
+    position: fixed;
+    bottom: 20px;
+    right: -100px;
+    z-index: 1000;
+    transition: all .3s ease;
+  }
+
+  .go-top:hover {
+    background-color: rgba(57, 9, 170, 0.24);
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+</style>

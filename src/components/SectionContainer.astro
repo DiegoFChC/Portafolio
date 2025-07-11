@@ -1,0 +1,51 @@
+---
+const { classname, id } = Astro.props
+---
+
+<section
+  id={id}
+  data-section={id}
+  class={`section ${classname}`}
+>
+  <slot />
+</section>
+
+<style>
+  section {
+    box-sizing: border-box;
+    scroll-margin: 5rem;
+    padding: 0;
+    width: 45%;
+  }
+
+  .pad {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+
+  @media (max-width: 1536px) {
+    section {
+      width: 50%;
+    }
+  }
+  @media (max-width: 1280px) {
+    section {
+      width: 60%;
+    }
+  }
+  @media (max-width: 1024px) {
+    section {
+      width: 70%;
+    }
+  }
+  @media (max-width: 768px) {
+    section {
+      width: 80%;
+    }
+  }
+  @media (max-width: 640px) {
+    section {
+      width: 90%;
+    }
+  }
+</style>

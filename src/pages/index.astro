@@ -1,54 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Badge from '../components/Badge.astro'
-import SocialPill from '../components/SocialPill.astro'
-import LinkedIn from '../icons/LinkedIn.astro'
-import GitHub from '../icons/GitHub.astro'
-import Mail from '../icons/Mail.astro'
+import SectionContainer from '../components/SectionContainer.astro'
+import Hero from '../components/Hero.astro'
+import TitleSection from '../components/TitleSection.astro'
+import Briefcase from '../icons/Briefcase.astro'
+import CodeIcon from '../icons/CodeIcon.astro'
+import BtnGoTop from '../components/BtnGoTop.astro'
+import Projects from '../components/Projects.astro'
 ---
 
 <Layout title='My portfolio' description='A portfolio to showcase my projects and skills.'>
 	<main>
-    <section class="section1">
-      <a
-        href="https://www.linkedin.com/in/diego-f-chaverra-c-683677271/"
-        target="_blank"
-        rel="noopener"
-      >
-        <Badge>Disponible para trabajar</Badge></a
-      >
-      <h1>
-        Hey, soy Diego
-      </h1>
-      <p>
-        <span style="opacity: .6;">Sin experiencia laboral.</span>
-        <span style="color: rgb(142, 95, 252);"
-          >Estudiante para desarrollador Fullstack.</span
-        >
-        <span style="opacity: 0.8;">De Cali Colombia.</span>
-        <span style="color: rgb(245, 245, 101);"
-          >Especializado en crear soluciones únicas a la medida del
-          cliente.</span
-        >
-      </p>
-
-      <div class='info-links'>
-        <SocialPill
-          href="https://www.linkedin.com/in/diego-f-chaverra-c-683677271/"
-        >
-          <LinkedIn />
-          LinkedIn
-        </SocialPill>
-				<SocialPill href="/">
-					<GitHub />
-					GitHub
-				</SocialPill>
-				<SocialPill href="/">
-					<Mail />
-					diegofech15@gmail.com
-				</SocialPill>
-      </div>
-    </section>
+    <SectionContainer classname='pad' id='home'>
+      <Hero />
+    </SectionContainer>
+    <SectionContainer id='resume'>
+      <TitleSection>
+        <Briefcase />
+        Mi currículum
+      </TitleSection>
+    </SectionContainer>
+    <SectionContainer id='projects'>
+      <TitleSection>
+        <CodeIcon />
+        Proyectos
+      </TitleSection>
+      <Projects />
+    </SectionContainer>
+    <SectionContainer id='about'></SectionContainer>
+    <SectionContainer id='contact'></SectionContainer>
+    <BtnGoTop />
     <section style={{ width: '100%', height: '100vh'}}></section>
   </main>
 </Layout>
@@ -60,72 +41,5 @@ import Mail from '../icons/Mail.astro'
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-
-  h1 {
-    width: fit-content;
-    margin: 0;
-    color: white;
-    font-weight: bold;
-    font-size: 2.8em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-  }
-
-  p {
-    max-width: 60%;
-    padding-top: 10px;
-    font-size: 1.2em;
-    font-weight: normal;
-    opacity: 0.8;
-  }
-
-  a {
-    width: fit-content;
-    text-decoration: none;
-    display: flex;
-  }
-
-  .section1 {
-    width: 50%;
-    padding-top: 200px;
-  }
-
-  img {
-    padding-bottom: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-
-	.info-links {
-    width: 100%;
-		display: flex;
-    flex-wrap: wrap;
-		gap: 10px;
-	}
-
-  @media (max-width: 1080px) {
-    .section1 {
-      width: 60%;
-    }
-  }
-
-  @media (max-width: 1000px) {
-    .section1 {
-      width: 70%;
-    }
-  }
-
-	@media (max-width: 600px) {
-    .section1 {
-      width: 90%;
-    }
-
-    p {
-      max-width: 100%;
-    }
   }
 </style>

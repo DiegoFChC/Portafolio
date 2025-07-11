@@ -1,0 +1,87 @@
+---
+import Badge from './Badge.astro'
+import SocialPill from './SocialPill.astro'
+import LinkedIn from '../icons/LinkedIn.astro'
+import GitHub from '../icons/GitHub.astro'
+import Mail from '../icons/Mail.astro'
+---
+
+<a
+  href='https://www.linkedin.com/in/diego-f-chaverra-c-683677271/'
+  target='_blank'
+  rel='noopener'
+>
+  <Badge>Disponible para trabajar</Badge></a
+>
+<h1>Hey, soy Diego</h1>
+<p>
+  Sin experiencia laboral.
+  <span style='color: rgb(149, 107, 248);'
+    >Estudiante para desarrollador Fullstack.</span
+  >
+  De Cali Colombia.
+  <span style='color: rgb(255, 255, 0);'
+    >Especializado en crear soluciones únicas a la medida del cliente.</span
+  >
+</p>
+
+<div class='info-links'>
+  <SocialPill href='https://www.linkedin.com/in/diego-f-chaverra-c-683677271/'>
+    <LinkedIn />
+    LinkedIn
+  </SocialPill>
+  <SocialPill href='https://github.com/DiegoFChC'>
+    <GitHub />
+    GitHub
+  </SocialPill>
+  <SocialPill href='mailto:diegofech15@gmail.com'>
+    <Mail />
+    Contáctame
+  </SocialPill>
+</div>
+
+<style>
+  h1 {
+    width: fit-content;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 2.8em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+
+  p {
+    color: rgb(236, 236, 236);
+    max-width: 60%;
+    padding-top: 10px;
+    font-size: 1.2em;
+    font-weight: normal;
+    opacity: 0.8;
+  }
+
+  a {
+    width: fit-content;
+    text-decoration: none;
+    display: flex;
+  }
+
+	.info-links {
+    width: 100%;
+		display: flex;
+    flex-wrap: wrap;
+		gap: 10px;
+	}
+
+  @media (max-width: 1536px) {}
+  @media (max-width: 1280px) {}
+  @media (max-width: 1024px) {}
+  @media (max-width: 768px) {}
+  @media (max-width: 640px) {
+    p {
+      max-width: 100%;
+    }
+  }
+</style>
