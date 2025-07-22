@@ -1,0 +1,35 @@
+---
+import Check from '../../icons/Check.astro';
+
+const { title, level } = Astro.props
+---
+
+<div class='skill-item'>
+  <Check size='18' />
+  <div class='info'>
+    <h3>{title}</h3>
+    <p>{level}</p>
+  </div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-item {
+    display: flex;
+    gap: 10px;
+  }
+
+  .skill-item .info h3 {
+    font-size: 1rem;
+  }
+
+  .skill-item .info p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgb(104, 104, 104);
+  }
+</style>

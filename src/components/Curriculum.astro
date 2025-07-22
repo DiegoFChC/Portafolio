@@ -1,0 +1,80 @@
+---
+import BtnIcon from './BtnIcon.astro'
+import AcademicCap from '../icons/AcademicCap.astro'
+import Sparkles from '../icons/Sparkles.astro'
+import UserSettings from '../icons/UserSettings.astro'
+import Education from './curriculum/Education.astro'
+import Experience from './curriculum/Experience.astro'
+import Skills from './curriculum/Skills.astro'
+---
+
+<div class='buttons'>
+  <BtnIcon name='Educación' className='active'>
+    <AcademicCap />
+  </BtnIcon>
+  <BtnIcon name='Experiencia'>
+    <Sparkles />
+  </BtnIcon>
+  <BtnIcon name='Habilidades'>
+    <UserSettings />
+  </BtnIcon>
+</div>
+<div class='data-content'>
+  <Education className='active' />
+  <Experience />
+  <Skills />
+</div>
+
+<script>
+  const containerButtons = document.querySelector('.buttons')
+  const buttons = containerButtons?.querySelectorAll('.tab-btn')
+  const infoContainers = document.querySelectorAll('.info-content')
+
+  function resetActive (btnClickedNumber: Number) {
+    buttons?.forEach(item => {
+      item.classList.remove('active')
+    })
+
+    infoContainers?.forEach(item => {
+      item.classList.remove('active')
+    })
+
+    buttons[btnClickedNumber].classList.add('active')
+
+    setTimeout(() => {
+      infoContainers[btnClickedNumber].classList.add('active')
+    }, 100)
+  }
+
+  buttons?.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      resetActive(i)
+    })
+  })
+</script>
+
+<style>
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .data-content {
+    width: 100%;
+    min-height: 400px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  @media (max-width: 640px) {
+    .data-content {
+      justify-content: left;
+    }
+  }
+</style>

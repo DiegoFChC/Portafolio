@@ -1,0 +1,126 @@
+---
+import Computer from '../../icons/Computer.astro'
+import Database from '../../icons/Database.astro'
+import SkillItem from './SkillItem.astro'
+
+const { className } = Astro.props
+
+const frontEnd = [
+  {
+    title: 'HTML',
+    level: 'Intermedio',
+  },
+  {
+    title: 'CSS',
+    level: 'Intermedio',
+  },
+  {
+    title: 'JavaScript',
+    level: 'Intermedio',
+  },
+  {
+    title: 'React',
+    level: 'Básico',
+  },
+]
+
+const backEnd = [
+  {
+    title: 'Python',
+    level: 'Básico'
+  },
+  {
+    title: 'Django',
+    level: 'Básico'
+  },
+  {
+    title: 'PostgreSQL',
+    level: 'Básico'
+  }
+]
+---
+
+<div class={`info-content ${className ? className : ''}`}>
+  <div class='frontEnd-skills'>
+    <h3 class='title'>
+      <Computer size='30' />
+      Desarrollo Front-End
+    </h3>
+    <div class='skills'>
+      {
+        frontEnd.map(item => (
+          <SkillItem title={item.title} level={item.level} />
+        ))
+      }
+    </div>
+  </div>
+  <div class='backEnd-skills'>
+    <h3 class='title'>
+      <Database size='30' />
+      Desarrollo Front-End
+    </h3>
+    <div class='skills'>
+      {
+        backEnd.map(item => (
+          <SkillItem title={item.title} level={item.level} />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .info-content {
+    display: none;
+    box-sizing: border-box;
+    position: relative;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  .info-content.active {
+    padding-bottom: 100px;
+    position: relative;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    opacity: 1;
+  }
+
+  .info-content .frontEnd-skills {
+    min-width: 200px;
+    flex: 1;
+  }
+
+  .info-content .backEnd-skills {
+    min-width: 200px;
+    flex: 1;
+  }
+
+  .info-content .frontEnd-skills,
+  .info-content .backEnd-skills {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.041);
+    border-radius: 10px;
+    border-bottom: 2px solid rgb(97, 15, 230);
+  }
+
+  .info-content .frontEnd-skills .title,
+  .info-content .backEnd-skills .title {
+    margin: 0;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-content .frontEnd-skills .skills,
+  .info-content .backEnd-skills .skills {
+    display: grid;
+    place-items: left;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 35px;
+    row-gap: 35px;
+  }
+</style>

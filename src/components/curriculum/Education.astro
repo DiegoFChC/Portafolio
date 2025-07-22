@@ -1,0 +1,75 @@
+---
+import Item from './Item.astro'
+import AcademicCap from '../../icons/AcademicCap.astro'
+
+const { className } = Astro.props
+
+const educationData = [
+  {
+    title: 'Educación Básica Primaria',
+    description: 'I.E Alfredo Posada Correa',
+    date: '2008 - 2015',
+    right: false
+  },
+  {
+    title: 'Bachillerato / Educación Media',
+    description: 'I.E Alfredo Posada Correa',
+    date: '2016 - 2018',
+    right: true
+  },
+  {
+    title: 'Universidad / Carrera Profesional',
+    description: 'Universidad del Valle',
+    date: '2019 - Actualmente',
+    right: false
+  }
+]
+---
+
+<div class={`info-content ${className ? className : ''}`}>
+  <div class='curriculum-line'></div>
+  {
+    educationData.map((item) => (
+      <Item
+        title={item.title}
+        description={item.description}
+        date={item.date}
+        right={item.right}
+      >
+        <AcademicCap size='30'/>
+      </Item>
+    ))
+  }
+</div>
+
+<style>
+  .info-content {
+    display: none;
+    position: relative;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  .curriculum-line {
+    position: absolute;
+    background-color: rgb(108, 109, 112);
+    width: 2px;
+    height: calc(100% - 40px);
+    top: 0;
+  }
+
+  .info-content.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    gap: 70px;
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .curriculum-line {
+      left: 20px;
+    }
+  }
+</style>

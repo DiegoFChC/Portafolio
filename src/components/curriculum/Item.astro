@@ -1,0 +1,120 @@
+---
+interface Props {
+  title: string,
+  description: string,
+  date: string,
+  right: boolean
+}
+
+const { title, description, date, right } = Astro.props
+---
+
+<div class='item'>
+  <div class=`info ${right ? 'item-right' : 'item-left'}`>
+    <div class='info-data'>
+      <slot />
+      <div class='data'>
+        <h5>{title}</h5>
+        <p>{description}</p>
+        <span>{date}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 40px;
+  }
+
+  .item .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+  }
+
+  .item .info .info-data {
+    position: absolute;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .item .info::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: rgb(108, 109, 112);
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .item .info.item-right .info-data {
+    left: 60px;
+  }
+  
+  .item .info.item-left .info-data {
+    right: 50px;
+  }
+
+  .item .info .info-data .data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .item .info .info-data h5 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .item .info .info-data p {
+    color: rgb(187, 185, 192);
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+  .item .info .info-data span {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(69, 5, 122, 0.521);
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 1536px) {}
+  @media (max-width: 1280px) {}
+  @media (max-width: 1024px) {}
+  @media (max-width: 768px) {}
+  @media (max-width: 640px) {
+    .item .info::before {
+      left: 20px;
+      background-color: rgb(108, 109, 112);
+    }
+
+    .item .info.item-right .info-data {
+      left: 50px;
+    }
+    
+    .item .info.item-left .info-data {
+      left: 50px;
+    }
+  }
+</style>

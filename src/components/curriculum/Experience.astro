@@ -1,0 +1,63 @@
+---
+import Item from './Item.astro'
+import Sparkles from '../../icons/Sparkles.astro'
+
+const { className } = Astro.props
+
+const educationData = [
+  {
+    title: 'Sistema de información para juzgado de la UV.',
+    description: 'Universidad del Valle',
+    date: '2025',
+    right: false
+  }
+]
+---
+
+<div class={`info-content ${className ? className : ''}`}>
+  <div class='curriculum-line'></div>
+  {
+    educationData.map((item) => (
+      <Item
+        title={item.title}
+        description={item.description}
+        date={item.date}
+        right={item.right}
+      >
+        <Sparkles size='30' />
+      </Item>
+    ))
+  }
+</div>
+
+<style>
+  .info-content {
+    display: none;
+    position: relative;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  .curriculum-line {
+    position: absolute;
+    background-color: rgb(108, 109, 112);
+    width: 2px;
+    height: calc(100% - 40px);
+    top: 0;
+  }
+
+  .info-content.active {
+    position: absolute;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .curriculum-line {
+      left: 20px;
+    }
+  }
+</style>
