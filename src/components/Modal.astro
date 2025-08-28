@@ -1,0 +1,109 @@
+---
+import ArrowUpRight from '../icons/ArrowUpRight.astro'
+---
+
+<div class='modal'>
+  <div class='content'>
+    <slot />
+  </div>
+</div>
+<button class='open-modal'>
+  <ArrowUpRight size='18' />
+  Ver más
+</button>
+
+<script>
+  const btns = document.querySelectorAll('.open-modal')
+  const modals = document.querySelectorAll('.modal')
+
+  btns.forEach((btn, index) => {
+    const modal = modals[index]
+    const content = modal.querySelector('.content')
+
+    btn?.addEventListener('click', () => {
+      modal?.classList.add('active')
+    })
+
+    modal?.addEventListener('click', () => {
+      modal.classList.remove('active')
+    })
+  
+    content?.addEventListener('click', (e) => {
+      e.stopPropagation()
+    })
+  })
+
+</script>
+
+<style>
+  .modal {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    background-color: rgba(0, 0, 0, 0.073);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .open-modal {
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.419);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.7rem;
+    background: rgba(128, 128, 128, 0.121);
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255);
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  .modal > .content {
+    width: 90%;
+    max-height: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to top left, rgba(3, 6, 19, 0.98), rgba(12, 22, 63, 0.98));
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.164);
+  }
+
+  @media (width > 500px) {
+    .modal > .content {
+      width: 80%;
+    }
+  }
+  @media (width > 1080px) {
+    .modal > .content {
+      width: 70%;
+    }
+  }
+  @media (width > 1500px) {
+    .modal > .content {
+      width: 60%;
+    }
+  }
+  @media (width > 1700px) {
+    .modal > .content {
+      width: 50%;
+    }
+  }
+</style>

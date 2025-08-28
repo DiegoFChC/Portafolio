@@ -1,0 +1,16 @@
+---
+import Slider from '../Slider.astro'
+
+const { images } = Astro.props
+---
+
+<div class='modal-container-sicodi'>
+  <Slider images={images} />
+</div>
+
+<style>
+  .modal-container-sicodi {
+    width: 100%;
+    height: 100%;
+  }
+</style>

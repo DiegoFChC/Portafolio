@@ -1,57 +1,11 @@
 ---
-import ReactIcon from '../icons/ReactIcon.astro'
-import NextIcon from '../icons/NextIcon.astro'
-import CssIcon from '../icons/CssIcon.astro'
-import DjangoIcon from '../icons/DjangoIcon.astro'
-
-const TAGS = {
-  REACT: {
-    name: 'React',
-    style: { background: '#003159', color: 'white' },
-    icon: ReactIcon
-  },
-  NEXT: {
-    name: 'Next.js',
-    style: { background: 'black', color: 'white' },
-    icon: NextIcon
-  },
-  CSS: {
-    name: 'CSS',
-    style: { background: '#2163AF', color: 'white' },
-    icon: CssIcon
-  },
-  DJANGO: {
-    name: 'Django',
-    style: { background: '#082E21', color: 'white' },
-    icon: DjangoIcon
-  }
-}
-
-const PROJECTS = [
-  {
-    title: 'SICODI - SI para gestión de procesos en un juzgado',
-    description: 'Sistema de información web para la gestión de procesos disciplinarios. Aplicación realizada para una oficina de control disciplinario interno o juzgado.',
-    link: '',
-    github: '',
-    image: '/projects/sicodi.webp',
-    tags: [TAGS.REACT, TAGS.CSS, TAGS.DJANGO],
-    collaborators: ''
-  },
-  {
-    title: 'Event Wallet - Sistema para gestión de gastos personales',
-    description: 'Aplicación web para gestión de gastos personales. La aplicación divide gastos entre un grupo de personas, permite la creación de eventos y la distribución de gastos en la misma. Lleva un contros de pagos y deudas.',
-    link: '',
-    github: '',
-    image: '/projects/mande.webp',
-    tags: [TAGS.NEXT, TAGS.CSS],
-    collaborators: 'Camilo Santa'
-  }
-]
+import Modal from '../components/Modal.astro'
+import { PROJECTS } from '../components/projects/data'
 ---
 
 <div class='my-projects'>
   {
-    PROJECTS.map(({ title, description, link, github, image, tags, collaborators }) => (
+    PROJECTS.map(({ title, description, link, github, image, images, tags, collaborators, modalContent: MyModalContent }) => (
       <div class='project'>
         <div class='project-image'>
           <img src={image} alt='Project image' />
@@ -73,6 +27,9 @@ const PROJECTS = [
             </ul>
           </div>
           <p>{description}</p>
+          <Modal>
+            <MyModalContent images={images} />
+          </Modal>
         </div>
       </div>
     ))
