@@ -1,9 +1,9 @@
 ---
-const { images } = Astro.props
+const { images, className } = Astro.props
 ---
 
 <div class='carouser-container'>
-  <div class='carousel-slide'>
+  <div class=`carousel-slide-${className}` data-class=`carousel-slide-${className}`>
     <div class='item'>
       <img
         src={images[images.length - 1].img}
@@ -12,7 +12,7 @@ const { images } = Astro.props
       />
     </div>
     {
-      images?.map((item) => {
+      images?.map((item: any) => {
         return (
           <div class='item'>
             <img src={item.img} alt='image-slide' />
@@ -25,21 +25,23 @@ const { images } = Astro.props
       <img src={images[0].img} alt='image-slide' id='firstClone' />
     </div>
   </div>
-</div>
-<div class='navigation'>
-  <button id='prevBtn'>Prev</button>
-  <button id='nextBtn'>Next</button>
+  <div class='navigation'>
+    <button id='prevBtn'>&lt</button>
+    <button id='nextBtn'>&gt</button>
+  </div>
 </div>
 
 <style>
   .carouser-container {
-    width: 100%;
+    width: 70%;
+    min-width: 250px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
   }
 
-  .carousel-slide {
+  .carouser-container > div {
     display: flex;
     width: 100%;
     height: 500px;
@@ -47,14 +49,14 @@ const { images } = Astro.props
 
   .item {
     min-width: 100%;
-    height: 500px;
+    max-height: 500px;
     position: relative;
   }
 
   .item img {
-    min-width: 100%;
+    width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .item span {
@@ -62,27 +64,58 @@ const { images } = Astro.props
     background: rgba(0, 0, 0, 0.205);
     color: white;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     position: absolute;
     right: 30px;
-    bottom: 30px;
+    bottom: 80px;
   }
 
   .navigation {
     width: 100%;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    position: absolute;
+    top: 0;
+  }
+
+  .navigation button {
+    height: 100%;
+    width: 60px;
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: black;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all .3s ease;
+  }
+
+  .navigation button:first-child {
+    left: 0;
+  }
+  
+  .navigation button:first-child:hover {
+    background: linear-gradient(to right, rgba(0,0,0,.4), rgba(0,0,0,0));
+    color: white;
+  }
+  
+  .navigation button:last-child {
+    right: 0;
+  }
+  
+  .navigation button:last-child:hover {
+    background: linear-gradient(to left, rgba(0,0,0,.4), rgba(0,0,0,0));
+    color: white;
   }
 </style>
 
 <script>
-  const $carouselSlide = document.querySelector('.carousel-slide')
-  const $carouselImages = document.querySelectorAll('.carousel-slide .item')
+  const $carouselSlide = document.querySelector(`[data-class]`)
+  const $carouselImages = document.querySelectorAll(`[data-class] .item`)
 
   // Buttons
   const $prevBtn = document.getElementById('prevBtn')
@@ -90,9 +123,8 @@ const { images } = Astro.props
 
   // Counter
   let counter = 1
-  let size
+  let size = 0
   const $btnOpenModal = document.querySelector('.open-modal')
-  console.log($btnOpenModal)
   $btnOpenModal.addEventListener('click', () => {
     setTimeout(() => {
       size = $carouselImages[0].clientWidth
@@ -101,21 +133,25 @@ const { images } = Astro.props
   })
 
   // Button listeners
-  $nextBtn.addEventListener('click', () => {
+  $nextBtn?.addEventListener('click', () => {
+    size = $carouselImages[0].clientWidth
+    $carouselSlide.style.transform = `translateX(${-size * counter}px)`
     if (counter >= $carouselImages.length - 1) return
     $carouselSlide.style.transition = 'transform .4s ease-in-out'
     counter++
     $carouselSlide.style.transform = `translateX(${-size * counter}px)`
   })
 
-  $prevBtn.addEventListener('click', () => {
+  $prevBtn?.addEventListener('click', () => {
+    size = $carouselImages[0].clientWidth
+    $carouselSlide.style.transform = `translateX(${-size * counter}px)`
     if (counter <= 0) return
     $carouselSlide.style.transition = 'transform .4s ease-in-out'
     counter--
     $carouselSlide.style.transform = `translateX(${-size * counter}px)`
   })
 
-  $carouselSlide.addEventListener('transitionend', () => {
+  $carouselSlide?.addEventListener('transitionend', () => {
     if ($carouselImages[counter].querySelector('img').id === 'lastClone') {
       $carouselSlide.style.transition = 'none'
       counter = $carouselImages.length - 2

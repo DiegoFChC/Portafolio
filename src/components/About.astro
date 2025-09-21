@@ -1,0 +1,62 @@
+<div class='about-me'>
+  <p>Mi nombre es <span>Diego Chaverra y a punto de culminar mi carrera universitaria como Ingeniero de Sistemas en al Universidad del Valle</span> de Colombia. Me apasiona el desarrollo web, especialmente el desarrollo <span>Front-End</span>, aunque tengo conocimientos <span>Back-End</span>. <br><br>
+    He participado en varios <span>proyectos académicos</span>, destacando mi trabajo de grado como el principal desarrollo Fullstack que he realizado (SICODI). <br><br>
+    Mi deseo es aplicar todos los conocimientos adquiridos a lo largo de mi carrera, en un ambiente real al igual que seguir creciendo profesionalmente.
+  </p>
+  <div class="image">
+    <img src="profile.jpg" alt="Profile image">
+  </div>
+</div>
+
+<style>
+  .about-me {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .about-me p {
+    flex: 2;
+  }
+
+  .about-me .image {
+    width: 190px;
+    height: 190px;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(5deg);
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-me .image::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(43, 57, 104);
+    border-radius: 5px;
+    position: absolute;
+    transform: rotate(10deg);
+    z-index: -1;
+  }
+
+  .about-me .image img {
+    width: 180px;
+    height: 180px;
+  }
+
+  span {
+    color: rgb(206, 206, 91);
+  }
+
+  @media (max-width: 800px) {
+    .about-me {
+      flex-direction: column-reverse;
+    }
+  }
+</style>

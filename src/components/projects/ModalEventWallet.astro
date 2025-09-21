@@ -1,14 +1,82 @@
 ---
-const { images } = Astro.props
+import Slider from '../Slider.astro'
+import { SliderComp } from '../SliderComp/SliderComp'
+import GitHub from '../../icons/GitHub.astro'
+
+const { images, title, github } = Astro.props
 ---
 
-<div class='modal-container'>
-  Demo en progreso
+<div class='modal-container-event'>
+  <SliderComp images={images} client:visible />
+  <div class="data">
+    <h1>{title}</h1>
+    <p>
+      Sistema para manejo de <span>gastos en grupo</span>. Este sistema permite crear y gestionar eventos, dividiendo gastos entre diferentes participantes. <br>
+      Entre las principales funcionaidades tenemos: creación de eventos, creación de actividades dentro de los eventos, asignación de usaurios a diferentes actividades, al igual que un monto de dinero si es necesario. El sistema también permite visualizar las deudas que se tienen o cuanto debe pagar en cada evento y actividad. 
+    </p>
+    {
+      github && (
+        <a href={github} target='_blank' class='btn-git'>
+          <GitHub size='18' />
+          Github
+        </a>
+      )
+    }
+  </div>
 </div>
 
 <style>
-  .modal-container {
+  .modal-container-event {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .modal-container-event .data {
+    min-width: 250px;
+    padding: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.288);
+  }
+
+  .data {
+    max-width: 250px;
+  }
+
+  .data h1 {
+    font-size: 1.2rem;
+  }
+
+  .data p {
+    font-size: .7rem;
+    color: rgb(219, 219, 219);
+  }
+
+  .data p span {
+    font-weight: bold;
+  }
+
+  .btn-git {
+    width: 100px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.419);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.7rem;
+    background: rgba(128, 128, 128, 0.121);
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255);
+      color: black;
+      cursor: pointer;
+    }
   }
 </style>

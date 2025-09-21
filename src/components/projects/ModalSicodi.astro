@@ -1,16 +1,104 @@
 ---
 import Slider from '../Slider.astro'
+import { SliderComp } from '../SliderComp/SliderComp'
+import GitHub from '../../icons/GitHub.astro'
 
-const { images } = Astro.props
+const { images, title, github } = Astro.props
 ---
 
 <div class='modal-container-sicodi'>
-  <Slider images={images} />
+  <Slider images={images} className='sicodi' />
+  <div class='data'>
+    <h1>{title}</h1>
+    <p>
+      Sistema de información para la gestión de quejas, reclamos y procesos
+      disciplinarios para la <span
+        >Oficina de Control Disciplinario Interno de la Universidad del Valle.</span
+      >
+      <br /><br />
+      Este sistema permite <span>monitorear los procesos disciplinarios</span> desde
+      el momento en que se registran en la oficina, hasta que se toma una decisión
+      sobre los mismos. Permite el <span
+        >seguimiento de los procesos dsiciplinarios</span
+      > por medio de una línea de tiempo o tracking. Además contiene <span
+        >gráficos estadísticos</span
+      > para la generación de reportes.<br /><br />
+      Adicional, se ha integrado con <span>IA para generar análisis</span> sobre
+      los reportes en la aplicación.
+    </p>
+    {
+      github ? (
+        <a href={github} class='btn-git'>
+          <GitHub size='18' />
+          Github
+        </a>
+      ) : (
+        <p class='no-git'>
+          El código de este proyecto no está disponible en Github ya que es
+          privado
+        </p>
+      )
+    }
+  </div>
 </div>
 
 <style>
   .modal-container-sicodi {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .modal-container-sicodi .data {
+    min-width: 250px;
+    padding: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.288);
+  }
+
+  .data {
+    max-width: 250px;
+  }
+
+  .data h1 {
+    font-size: 1.2rem;
+  }
+
+  .data p {
+    font-size: 0.7rem;
+    color: rgb(219, 219, 219);
+  }
+
+  .data p span {
+    font-weight: bold;
+  }
+
+  .btn-git {
+    width: 100px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.419);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.7rem;
+    background: rgba(128, 128, 128, 0.121);
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255);
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  .data .no-git {
+    font-size: 0.7rem;
+    color: rgb(255, 0, 0);
   }
 </style>

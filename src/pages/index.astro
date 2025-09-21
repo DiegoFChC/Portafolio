@@ -8,10 +8,15 @@ import CodeIcon from '../icons/CodeIcon.astro'
 import BtnGoTop from '../components/BtnGoTop.astro'
 import Projects from '../components/Projects.astro'
 import Curriculum from '../components/Curriculum.astro'
+import About from '../components/About.astro'
+import AboutIcon from '../icons/AboutIcon.astro'
 ---
 
-<Layout title='My portfolio' description='A portfolio to showcase my projects and skills.'>
-	<main>
+<Layout
+  title='My portfolio'
+  description='A portfolio to showcase my projects and skills.'
+>
+  <main>
     <SectionContainer classname='pad' id='home'>
       <Hero />
     </SectionContainer>
@@ -29,10 +34,24 @@ import Curriculum from '../components/Curriculum.astro'
       </TitleSection>
       <Projects />
     </SectionContainer>
-    <SectionContainer id='about'></SectionContainer>
-    <SectionContainer id='contact'></SectionContainer>
+    <SectionContainer id='about'>
+      <TitleSection>
+        <AboutIcon />
+        Sobre mí
+      </TitleSection>
+      <About />
+    </SectionContainer>
+    <SectionContainer id='contact' />
     <BtnGoTop />
-    <section style={{ width: '100%', height: '100vh'}}></section>
+    <span class='rights'
+      >@2025. Derechos para
+      <a
+        href='https://www.youtube.com/@midudev'
+        target='_blank'>midudev
+      </a>
+      . Gracias midu 🤍.
+      </span
+    >
   </main>
 </Layout>
 
@@ -43,5 +62,16 @@ import Curriculum from '../components/Curriculum.astro'
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .rights {
+    margin-bottom: 5px;
+    font-size: .8rem;
+    font-weight: 200;
+  }
+
+  .rights a {
+    color: rgb(236, 213, 1);
+    text-decoration: none;
+    font-weight: bold;
   }
 </style>
