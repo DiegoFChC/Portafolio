@@ -35,6 +35,7 @@ const { images, className } = Astro.props
   .carouser-container {
     width: 70%;
     min-width: 250px;
+    max-height: 400px;
     margin: auto;
     border-radius: 10px;
     overflow: hidden;
@@ -44,7 +45,6 @@ const { images, className } = Astro.props
   .carouser-container > div {
     display: flex;
     width: 100%;
-    height: 500px;
   }
 
   .item {
@@ -60,7 +60,7 @@ const { images, className } = Astro.props
   }
 
   .item span {
-    padding: 20px 30px;
+    padding: 10px 20px;
     background: rgba(0, 0, 0, 0.205);
     color: white;
     font-weight: bold;
@@ -70,13 +70,11 @@ const { images, className } = Astro.props
     backdrop-filter: blur(5px);
     position: absolute;
     right: 30px;
-    bottom: 80px;
+    bottom: 0;
   }
 
   .navigation {
     width: 100%;
-    position: absolute;
-    top: 0;
   }
 
   .navigation button {
@@ -110,6 +108,16 @@ const { images, className } = Astro.props
   .navigation button:last-child:hover {
     background: linear-gradient(to left, rgba(0,0,0,.4), rgba(0,0,0,0));
     color: white;
+  }
+
+  @media (max-width: 1300px) {
+    .carouser-container {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .item span {
+      font-size: 0.8rem;
+    }
   }
 </style>
 
