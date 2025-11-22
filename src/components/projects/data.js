@@ -33,7 +33,7 @@ export const PROJECTS = [
     id: 'sicodi',
     title: 'SICODI - SI para gestión de procesos en un juzgado',
     description: 'Sistema de información web para la gestión de procesos disciplinarios. Aplicación realizada para una oficina de control disciplinario interno o juzgado.',
-    link: '',
+    link: null,
     github: '',
     image: '/projects/sicodi/sicodi.webp',
     tags: [TAGS.REACT, TAGS.CSS, TAGS.DJANGO],
@@ -78,57 +78,69 @@ export const PROJECTS = [
     id: 'event-wallet',
     title: 'Event Wallet - Sistema para gestión de gastos personales',
     description: 'Aplicación web para gestión de gastos personales, permite la creación de eventos y la distribución de gastos en la misma. Lleva un control de pagos y deudas.',
-    link: '',
+    link: null,
     github: 'https://github.com/alejandro19-19/EventWallet-Frontend',
-    image: '/projects/event_wallet/event_wallet.webp',
+    image: '/projects/event-wallet/event-wallet.webp',
     tags: [TAGS.NEXT, TAGS.CSS],
     collaborators: 'Camilo Santa',
     modalContent: ModalEventWallet,
     images: [
       {
-        img: '/projects/event_wallet/1.png',
+        img: '/projects/event-wallet/1.png',
         description: 'LOGIN'
       },
       {
-        img: '/projects/event_wallet/2.png',
+        img: '/projects/event-wallet/2.png',
         description: 'REGISTRO'
       },
       {
-        img: '/projects/event_wallet/3.png',
+        img: '/projects/event-wallet/3.png',
         description: 'DASHBOARD'
       },
       {
-        img: '/projects/event_wallet/4.png',
+        img: '/projects/event-wallet/4.png',
         description: 'PERFIL'
       },
       {
-        img: '/projects/event_wallet/5.png',
+        img: '/projects/event-wallet/5.png',
         description: 'NOTIFICACIONES'
       },
       {
-        img: '/projects/event_wallet/6.png',
+        img: '/projects/event-wallet/6.png',
         description: 'EVENTOS'
       },
       {
-        img: '/projects/event_wallet/7.png',
+        img: '/projects/event-wallet/7.png',
         description: 'CREACIÓN'
       },
       {
-        img: '/projects/event_wallet/8.png',
+        img: '/projects/event-wallet/8.png',
         description: 'INFO Y ACTIVIDADES'
       },
       {
-        img: '/projects/event_wallet/9.png',
+        img: '/projects/event-wallet/9.png',
         description: 'ASIGNACION DE RESPONSABILIDADES'
       },
       {
-        img: '/projects/event_wallet/10.png',
+        img: '/projects/event-wallet/10.png',
         description: 'CONTACTOS'
       },
       {
-        img: '/projects/event_wallet/11.png',
+        img: '/projects/event-wallet/11.png',
         description: 'DEUDAS'
       },
     ]
+  },
+  {
+    id: 'dev-library',
+    title: 'Dev Library',
+    description: 'Web con estilo de documentación donde podrás encontrar mis apuntes personales y en un futuro, mis componentes de HTML, CSS y JavaScript.',
+    link: 'https://dev-library-diferdev.vercel.app/',
+    github: 'https://github.com/DiegoFChC/dev-library',
+    image: '/projects/dev-library/dev-library.webp',
+    tags: [TAGS.REACT, TAGS.NEXT, TAGS.CSS],
+    collaborators: '',
+    modalContent: null,
+    images: []
   }
 ]

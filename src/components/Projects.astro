@@ -1,6 +1,8 @@
 ---
 import Modal from '../components/Modal.astro'
 import { PROJECTS } from '../components/projects/data'
+import SocialPill from './SocialPill.astro'
+import Web from '../icons/Web.astro'
 ---
 
 <div class='my-projects'>
@@ -27,69 +29,27 @@ import { PROJECTS } from '../components/projects/data'
             </ul>
           </div>
           <p>{description}</p>
-          <Modal>
-            <MyModalContent images={images} title={title} github={github} />
-          </Modal>
+          {
+            MyModalContent !== null
+            ? (
+              <Modal>
+                <MyModalContent images={images} title={title} github={github} />
+              </Modal>
+            ) : null
+          }
+          {
+            link && (
+              <a class='open-demo' href={link} target='_blank'>
+                <Web size='18' />
+                Demo
+              </a>
+            )
+          }
         </div>
       </div>
     ))
   }
 </div>
-
-<!-- <div class='my-projects'>
-  <div class='project'>
-    <div class='project-image'>
-      <img src={PROJECTS[0].image} alt='Project image' />
-    </div>
-    <div class='project-content'>
-      <h3>{PROJECTS[0].title}</h3>
-      <div class='tags'>
-        <ul>
-          {
-            PROJECTS[0].tags.map((tag) => (
-              <li>
-                <span style={tag.style}>
-                  <tag.icon />
-                  {tag.name}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <p>{PROJECTS[0].description}</p>
-      <Modal>
-        <ModalSicodi images={PROJECTS[0].images} />
-      </Modal>
-    </div>
-  </div>
-  <div class='project'>
-    <div class='project-image'>
-      <img src={PROJECTS[1].image} alt='Project image' />
-    </div>
-    <div class='project-content'>
-      <h3>{PROJECTS[1].title}</h3>
-      <div class='tags'>
-        <ul>
-          {
-            PROJECTS[1].tags.map((tag) => (
-              <li>
-                <span style={tag.style}>
-                  <tag.icon />
-                  {tag.name}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <p>{PROJECTS[1].description}</p>
-      <Modal>
-        <ModalSicodi images={PROJECTS[0].images} />
-      </Modal>
-    </div>
-  </div>
-</div> -->
 
 <style>
   .my-projects {
@@ -170,6 +130,30 @@ import { PROJECTS } from '../components/projects/data'
     display: flex;
     align-items: center;
     gap: 5px;
+  }
+
+  .open-demo {
+    min-width: 100px;
+    max-width: 100px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.419);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.7rem;
+    background: rgba(128, 128, 128, 0.121);
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255);
+      color: black;
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 1024px) {
